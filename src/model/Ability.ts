@@ -9,7 +9,10 @@ import stone from '../images/stone.svg';
 const values: Ability[] = [];
 
 export class Ability {
-  private constructor(public readonly icon: string) {
+  private constructor(
+    public readonly name: string,
+    public readonly icon: string,
+  ) {
     values.push(this);
 
     // preload the image
@@ -21,11 +24,11 @@ export class Ability {
     return values;
   }
 
-  public static BOMB = new Ability(bomb);
-  public static CUTTER = new Ability(cutter);
-  public static BURN = new Ability(burn);
-  public static ICE = new Ability(ice);
-  public static NEEDLE = new Ability(needle);
-  public static SPARK = new Ability(spark);
-  public static STONE = new Ability(stone);
+  public static BOMB = new Ability('bomb', bomb);
+  public static CUTTER = new Ability('cutter', cutter);
+  public static BURN = new Ability('burn', burn);
+  public static ICE = new Ability('ice', ice);
+  public static NEEDLE = new Ability('needle', needle);
+  public static SPARK = new Ability('spark', spark);
+  public static STONE = new Ability('stone', stone);
 }
