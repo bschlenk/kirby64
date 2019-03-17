@@ -50,11 +50,11 @@ export const AbilityHud = ({
 }: AbilityHudProps) => {
   return (
     <Cardboard>
-      <CardSelector onClick={setRight}>
+      <CardSelector onClick={setLeft}>
         <Card icon={left && left.icon} />
       </CardSelector>
 
-      <CardSelector onClick={setLeft}>
+      <CardSelector onClick={setRight}>
         <Card right icon={right && right.icon} />
       </CardSelector>
 
