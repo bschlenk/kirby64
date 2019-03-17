@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 import { Ability, AbilitySet } from './model/Ability';
 import { AbilityHud } from './components/AbilityHud';
 import { AbilityView } from './components/AbilityView';
+import { nonNull } from './utils/nonNull';
 
 const AppLayout = styled.div`
   height: 100%;
@@ -13,6 +14,21 @@ const AppLayout = styled.div`
 
 const RenderedArea = styled.div`
   background: powderblue;
+  text-align: center;
+
+  img {
+    max-width: 95%;
+  }
+
+  p {
+    color: white;
+    /* text-shadow: #333 0 1px 2px; */
+    font-size: 3rem;
+
+    @media only screen and (min-width: 475px) {
+      font-size: 4rem;
+    }
+  }
 `;
 
 export const App = () => {
@@ -23,6 +39,7 @@ export const App = () => {
   return (
     <AppLayout>
       <RenderedArea>
+        <AbilityTag abilities={abilities} />
         <AbilityView left={abilities[0]} right={abilities[1]} />
       </RenderedArea>
       <AbilityHud
@@ -32,4 +49,15 @@ export const App = () => {
       />
     </AppLayout>
   );
+};
+
+const AbilityTag = ({ abilities }: { abilities: AbilitySet }) => {
+  const text = abilities.every(a => a == undefined)
+    ? 'Choose an ability combination below!'
+    : abilities
+        .map(a => a && a.name)
+        .filter(nonNull)
+        .join(' + ');
+
+  return <p>{text}</p>;
 };
