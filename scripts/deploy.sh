@@ -8,4 +8,4 @@ if [ ! $(command -v aws) ]; then
 fi
 
 npm run build
-aws s3 sync build/ s3://kirby64.bschlenk.com
+aws s3 sync --delete build/ s3://kirby64.bschlenk.com
