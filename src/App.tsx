@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { Ability, AbilitySet, useAbilities } from './model/Ability';
+import { AbilitySet, useAbilities } from './model/Ability';
 import { AbilityHud } from './components/AbilityHud';
 import { AbilityView } from './components/AbilityView';
 import { nonNull } from './utils/nonNull';
@@ -37,13 +37,9 @@ export const App = () => {
     <AppLayout>
       <RenderedArea>
         <AbilityTag abilities={abilities} />
-        <AbilityView left={abilities[0]} right={abilities[1]} />
+        <AbilityView abilities={abilities} />
       </RenderedArea>
-      <AbilityHud
-        leftAbility={abilities[0]}
-        rightAbility={abilities[1]}
-        abilityActions={abilityActions}
-      />
+      <AbilityHud abilities={abilities} abilityActions={abilityActions} />
     </AppLayout>
   );
 };

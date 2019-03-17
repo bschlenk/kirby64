@@ -40,24 +40,22 @@ const Card = styled.div<{ icon?: string; right?: boolean }>`
 `;
 
 export interface AbilityHudProps {
-  leftAbility?: Ability;
-  rightAbility?: Ability;
+  abilities: AbilitySet;
   abilityActions: AbilityActions;
 }
 
 export const AbilityHud = ({
-  leftAbility,
-  rightAbility,
+  abilities: [left, right],
   abilityActions: { setLeft, setRight },
 }: AbilityHudProps) => {
   return (
     <Cardboard>
       <CardSelector onClick={setRight}>
-        <Card icon={leftAbility && leftAbility.icon} />
+        <Card icon={left && left.icon} />
       </CardSelector>
 
       <CardSelector onClick={setLeft}>
-        <Card right icon={rightAbility && rightAbility.icon} />
+        <Card right icon={right && right.icon} />
       </CardSelector>
 
       <Squares />
