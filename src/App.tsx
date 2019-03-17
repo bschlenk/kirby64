@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
-import { Ability } from './model/Ability';
+import { Ability, AbilitySet } from './model/Ability';
 import { AbilityHud } from './components/AbilityHud';
 import { AbilityView } from './components/AbilityView';
 
@@ -16,7 +16,10 @@ const RenderedArea = styled.div`
 `;
 
 export const App = () => {
-  const [abilities, setAbilities] = useState<(Ability | undefined)[]>([]);
+  const [abilities, setAbilities] = useState<AbilitySet>([
+    undefined,
+    undefined,
+  ]);
   return (
     <AppLayout>
       <RenderedArea>

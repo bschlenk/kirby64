@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components/macro';
-import { Ability } from '../../model/Ability';
+import { Ability, AbilitySet } from '../../model/Ability';
 import cardboard from './images/cardboard.svg';
 import cardboardRagged from './images/cardboard-ragged.svg';
 import cardboardRaggedRight from './images/cardboard-ragged-right.svg';
@@ -42,7 +42,7 @@ const Card = styled.div<{ icon?: string; right?: boolean }>`
 export interface AbilityHudProps {
   leftAbility?: Ability;
   rightAbility?: Ability;
-  onChange: (abilities: (Ability | undefined)[]) => void;
+  onChange: (abilities: AbilitySet) => void;
 }
 
 export const AbilityHud = ({

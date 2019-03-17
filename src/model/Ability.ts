@@ -32,3 +32,5 @@ export class Ability {
   public static SPARK = new Ability('spark', spark);
   public static STONE = new Ability('stone', stone);
 }
+
+export type AbilitySet = [Ability | undefined, Ability | undefined];
