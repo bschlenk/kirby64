@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components/macro';
-import { Ability, AbilitySet } from '../../model/Ability';
+import { AbilitySet, AbilityActions } from '../../model/Ability';
 import cardboard from './images/cardboard.svg';
 import cardboardRagged from './images/cardboard-ragged.svg';
 import cardboardRaggedRight from './images/cardboard-ragged-right.svg';
@@ -42,21 +42,21 @@ const Card = styled.div<{ icon?: string; right?: boolean }>`
 export interface AbilityHudProps {
   leftAbility?: Ability;
   rightAbility?: Ability;
-  onChange: (abilities: AbilitySet) => void;
+  abilityActions: AbilityActions;
 }
 
 export const AbilityHud = ({
   leftAbility,
   rightAbility,
-  onChange,
+  abilityActions: { setLeft, setRight },
 }: AbilityHudProps) => {
   return (
     <Cardboard>
-      <CardSelector onClick={ability => onChange([ability, rightAbility])}>
+      <CardSelector onClick={setRight}>
         <Card icon={leftAbility && leftAbility.icon} />
       </CardSelector>
 
-      <CardSelector onClick={ability => onChange([leftAbility, ability])}>
+      <CardSelector onClick={setLeft}>
         <Card right icon={rightAbility && rightAbility.icon} />
       </CardSelector>
 

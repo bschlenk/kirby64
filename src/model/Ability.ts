@@ -5,6 +5,7 @@ import ice from '../images/ice.svg';
 import needle from '../images/needle.svg';
 import spark from '../images/spark.svg';
 import stone from '../images/stone.svg';
+import { useState } from 'react';
 
 const values: Ability[] = [];
 
@@ -34,3 +35,23 @@ export class Ability {
 }
 
 export type AbilitySet = [Ability | undefined, Ability | undefined];
+
+export interface AbilityActions {
+  setLeft: (ability: Ability) => void;
+  setRight: (ability: Ability) => void;
+}
+
+export function useAbilities(): [AbilitySet, AbilityActions] {
+  const [abilities, setAbilities] = useState<AbilitySet>([
+    undefined,
+    undefined,
+  ]);
+
+  return [
+    abilities,
+    {
+      setLeft: ability => setAbilities([ability, abilities[1]]),
+      setRight: ability => setAbilities([abilities[0], ability]),
+    },
+  ];
+}
