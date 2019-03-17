@@ -6,6 +6,7 @@ import needle from '../images/needle.svg';
 import spark from '../images/spark.svg';
 import stone from '../images/stone.svg';
 import { useState } from 'react';
+import { nonNull } from '../utils/nonNull';
 
 const values: Ability[] = [];
 
@@ -55,3 +56,21 @@ export function useAbilities(): [AbilitySet, AbilityActions] {
     },
   ];
 }
+
+export const getAbilityGif = (abilities: AbilitySet) => {
+  const abilityName = abilities
+    .filter(nonNull)
+    .sort((a, b) => {
+      const aIndex = Ability.values().indexOf(a);
+      const bIndex = Ability.values().indexOf(b);
+      return aIndex - bIndex;
+    })
+    .map(a => a.name)
+    .join('_');
+
+  if (abilityName) {
+    return `ability-gifs/${abilityName}.gif`;
+  }
+
+  return null;
+};
