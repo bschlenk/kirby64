@@ -47,18 +47,16 @@ export interface AbilityHudProps {
 export const AbilityHud = ({
   abilities: [left, right],
   abilityActions: { setLeft, setRight },
-}: AbilityHudProps) => {
-  return (
-    <Cardboard>
-      <CardSelector onClick={setLeft}>
-        <Card icon={left && left.icon} />
-      </CardSelector>
+}: AbilityHudProps) => (
+  <Cardboard>
+    <CardSelector onClick={setLeft}>
+      <Card icon={left && left.icon} />
+    </CardSelector>
 
-      <CardSelector onClick={setRight}>
-        <Card right icon={right && right.icon} />
-      </CardSelector>
+    <CardSelector onClick={setRight}>
+      <Card right icon={right && right.icon} />
+    </CardSelector>
 
-      <Squares />
-    </Cardboard>
-  );
-};
+    <Squares />
+  </Cardboard>
+);
