@@ -22,7 +22,6 @@ const RenderedArea = styled.div`
 
   p {
     color: white;
-    /* text-shadow: #333 0 1px 2px; */
     font-size: 3rem;
 
     @media only screen and (min-width: 475px) {
