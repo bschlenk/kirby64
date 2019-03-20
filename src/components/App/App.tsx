@@ -6,11 +6,13 @@ import { AbilitySet, useAbilities } from '../../model/Ability';
 
 import { AbilityHud } from '../AbilityHud';
 import { AbilityView } from '../AbilityView';
+import { GithubIcon } from '../GithubIcon';
 
 const AppLayout = styled.div`
   height: 100%;
   width: 100%;
   display: grid;
+  position: relative;
   grid-template-rows: 1fr min-content;
 `;
 
@@ -41,6 +43,7 @@ export const App = () => {
         <AbilityView abilities={abilities} />
       </RenderedArea>
       <AbilityHud abilities={abilities} abilityActions={abilityActions} />
+      <GithubIcon />
     </AppLayout>
   );
 };
