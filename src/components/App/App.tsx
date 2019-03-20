@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { AbilitySet, useAbilities } from './model/Ability';
-import { AbilityHud } from './components/AbilityHud';
-import { AbilityView } from './components/AbilityView';
-import { nonNull } from './utils/nonNull';
+
+import { nonNull } from '../../utils/nonNull';
+import { AbilitySet, useAbilities } from '../../model/Ability';
+
+import { AbilityHud } from '../AbilityHud';
+import { AbilityView } from '../AbilityView';
 
 const AppLayout = styled.div`
   height: 100%;
