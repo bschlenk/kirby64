@@ -7,6 +7,7 @@ import spark from '../images/spark.svg';
 import stone from '../images/stone.svg';
 import { useState } from 'react';
 import { nonNull } from '../utils/nonNull';
+import { compareRelativeTo } from '../utils/compareRelativeTo';
 
 const values: Ability[] = [];
 
@@ -60,11 +61,7 @@ export function useAbilities(): [AbilitySet, AbilityActions] {
 export const getAbilityGif = (abilities: AbilitySet) => {
   const abilityName = abilities
     .filter(nonNull)
-    .sort((a, b) => {
-      const aIndex = Ability.values().indexOf(a);
-      const bIndex = Ability.values().indexOf(b);
-      return aIndex - bIndex;
-    })
+    .sort(compareRelativeTo(Ability.values()))
     .map(a => a.name)
     .join('_');
 
