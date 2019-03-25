@@ -27,15 +27,15 @@ const Wrapper = styled.div<{ x: number; y: number }>`
   align-items: center;
 `;
 
-const TriangleWrapper = styled.div<{ x: number; y: number }>`
-  position: fixed;
-  top: ${props => props.y}px;
-  left: ${props => props.x}px;
+const TriangleWrapper = styled.div<{ offset: number }>`
+  position: absolute;
+  bottom: -18px;
+  left: ${props => props.offset}px;
 `;
 
-const Triangle = ({ x, y }: { x: number; y: number }) => {
+const Triangle = ({ offset }: { offset: number }) => {
   return (
-    <TriangleWrapper x={x} y={y}>
+    <TriangleWrapper offset={offset}>
       <svg fill="#fff" width={20} height={15}>
         <path d="M0 0 H20 L10 15 z" />
       </svg>
@@ -56,7 +56,7 @@ export const Popover = ({
   contents,
   onOutsideClick,
 }: PopoverProps) => {
-  const [coords, setCoords] = useState({ x: 0, y: 0, elX: 0, elY: 0 });
+  const [coords, setCoords] = useState({ x: 0, y: 0, offset: 0 });
   const elRef = useRef<HTMLElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -83,9 +83,8 @@ export const Popover = ({
     const elRect = elRef.current!.getBoundingClientRect();
     const x = window.innerWidth / 2 - wrapperRect.width / 2;
     const y = elRect.top - wrapperRect.height - 20;
-    const elX = elRect.left + elRect.width / 2;
-    const elY = y + wrapperRect.height;
-    setCoords({ x, y, elX, elY });
+    const offset = elRect.left + elRect.width / 2 - x;
+    setCoords({ x, y, offset });
   }, [open, children, contents]);
 
   const clone = React.cloneElement(children, { ref: elRef });
@@ -96,7 +95,7 @@ export const Popover = ({
       {open && (
         <Wrapper x={coords.x} y={coords.y} ref={wrapperRef}>
           {contents}
-          <Triangle x={coords.elX} y={coords.elY} />
+          <Triangle offset={coords.offset} />
         </Wrapper>
       )}
     </>
