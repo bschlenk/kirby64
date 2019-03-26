@@ -1,5 +1,5 @@
-import React, { useRef, useState, useEffect } from 'react';
-import styled, { keyframes } from 'styled-components/macro';
+import React, { useState } from 'react';
+import styled from 'styled-components/macro';
 import { Ability } from '../../model/Ability';
 import { Popover } from '../Popover';
 
