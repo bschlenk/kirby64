@@ -58,16 +58,29 @@ export function useAbilities(): [AbilitySet, AbilityActions] {
   ];
 }
 
-export const getAbilityGif = (abilities: AbilitySet) => {
-  const abilityName = abilities
+const getAbilityName = (abilities: AbilitySet) =>
+  abilities
     .filter(nonNull)
     .sort(compareRelativeTo(Ability.values()))
     .map(a => a.name)
     .join('_');
 
+const getAbilityFile = (template: (name: string) => string) => (
+  abilities: AbilitySet,
+) => {
+  const abilityName = getAbilityName(abilities);
+
   if (abilityName) {
-    return `ability-gifs/${abilityName}.gif`;
+    return template(abilityName);
   }
 
   return null;
 };
+
+export const getAbilityGif = getAbilityFile(
+  (name: string) => `ability-gifs/${name}.gif`,
+);
+
+export const getAbilityModel = getAbilityFile(
+  (name: string) => `models/${name}.glb`,
+);

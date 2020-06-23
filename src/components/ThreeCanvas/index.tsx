@@ -1,18 +1,16 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { renderScene } from './renderScene';
 
-export class ThreeCanvas extends React.Component {
-  ref = React.createRef<HTMLDivElement>();
-
-  shouldComponentUpdate() {
-    return false;
-  }
-
-  componentDidMount() {
-    renderScene(this.ref.current!);
-  }
-
-  render() {
-    return <div ref={this.ref} />;
-  }
+export interface ThreeCanvasProps {
+  model: string;
 }
+
+export const ThreeCanvas = React.memo(({ model }: ThreeCanvasProps) => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    renderScene(ref.current!, model);
+  });
+
+  return <div ref={ref} />;
+});

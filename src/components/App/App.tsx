@@ -7,6 +7,7 @@ import { AbilitySet, useAbilities } from '../../model/Ability';
 import { AbilityHud } from '../AbilityHud';
 import { AbilityView } from '../AbilityView';
 import { GithubIcon } from '../GithubIcon';
+import { AbilityModelView } from '../AbilityModelView';
 
 const AppLayout = styled.div`
   height: 100%;
@@ -40,7 +41,8 @@ export const App = () => {
     <AppLayout>
       <RenderedArea>
         <AbilityTag abilities={abilities} />
-        <AbilityView abilities={abilities} />
+        {/*<AbilityView abilities={abilities} />*/}
+        <AbilityModelView abilities={abilities} />
       </RenderedArea>
       <AbilityHud abilities={abilities} abilityActions={abilityActions} />
       <GithubIcon />
